@@ -1,0 +1,25 @@
+<nav aria-label="...">
+    <ul class="pager">
+        <li class="previous">
+        {% if page<=1 %}
+        <span href="javascript:;">没有上一页了</span>
+        {% else %}
+        <a href="/?category={{ category }}&page={{ page-1 }}"><span aria-hidden="true">&larr;</span> 上一页</a>
+        {% endif %}
+        </li>
+        {% if pages >0 %}
+        <li>{{ page }}/{{ pages }}</li>
+
+        {% endif %}
+
+        <li class="next">
+            {% if page>= pages %}
+            <span href="javascript:;">没有下一页了</span>
+            {% else %}
+
+            <a href="/?category={{ category }}&page={{ page+1 }}">下一页 <span aria-hidden="true">&rarr;</span></a>
+            {% endif %}
+
+        </li>
+    </ul>
+</nav>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+
+
+
+    <link rel="stylesheet" type="text/css" href="/public/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/public/css/main.css" type="text/css" >
+
+
+    <script src="/public/js/jquery.min.js"></script>
+    <script src="/public/js/bootstrap.min.js"></script>
+    <script src="/public/js/index.js"></script>
+</head>
+<body style="background: #c1e2b3">
+<div id="head" class="text-center">
+    <div>
+
+    </div>
+</div>
+<div class="navdiv">
+    <div class="container-fluid text-center " >
+        <ul class="nav nav-pills text-center">
+            {% if category == -1 %}
+            <li role="presentation" class="active"><a href="/?category=-1">Home</a></li>
+            {% else %}
+            <li role="presentation" ><a href="/?category= -1">Home</a></li>
+            {% endif %}
+
+            {%  for cate in categorys %}
+                 {% if category == cate.id %}
+            <li role="presentation"  class="active"><a href="/?category={{ cate.id }}" >{{ cate.name }}</a></li>
+                {% else %}
+            <li role="presentation" ><a href="/?category={{ cate.id }}" >{{ cate.name }}</a></li>
+                {% endif %}
+
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+<div class="container">
+    <div class="col-xs-8" >
+        {% block content %}
+        {% endblock %}
+    </div>
+    <div class="col-xs-4">
+        {% if userInfo._id %}
+        <div class="panel panel-info">
+            <div class="panel-body">
+               用户信息
+            </div>
+            <div class="panel-footer">
+                <div id="loginIn">
+
+                    <label >{{ userInfo.username }}</label><br>
+                    {% if userInfo.isAdmin %}
+                    <p><span>你好，管理员</span><a href="/admin">进入管理~</a></p>
+                    {% else %}
+                    <span>欢迎登录</span><br>
+                    {% endif %}
+                   <br> <a href="javascript:;" id="logout" style="text-align: right">退出</a>
+                </div>
+            </div>
+        </div>
+
+        {% else %}
+        <div class="panel panel-info" id="login">
+            <div class="panel-body">
+               登录
+            </div>
+            <div class="panel-footer">
+                <div  class="">
+                    <div class="form-group">
+                        <label >用户名</label>
+                        <input type="text" class="form-control"  placeholder="请输入用户名" name="username">
+                    </div>
+                    <div class="form-group">
+                        <label >密码</label>
+                        <input type="password" class="form-control"  placeholder="请输入密码" name="password">
+                    </div>
+                    <span style="float: right">没有账号!<a href="javascript:;">去注册</a></span><br>
+                    <button class="btn btn-default">登录</button>
+                    <div style="width: 100%;text-align: center">
+                        <span class="message" style="color: red;"></span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-info"id="register">
+            <div class="panel-body">
+                注册
+            </div>
+            <div class="panel-footer">
+                <div >
+                    <div class="form-group">
+                        <label >用户名</label>
+                        <input type="text" class="form-control"  placeholder="请输入密码" name="username">
+                    </div>
+                    <div class="form-group">
+                        <label >密码</label>
+                        <input type="password" class="form-control"  placeholder="请输入密码" name="password">
+                    </div>
+                    <div class="form-group">
+                        <label >确认密码</label>
+                        <input type="password" class="form-control"  placeholder="请输入密码" name="repassword">
+                    </div>
+                    <span style="float: right">已有账号!<a href="javascript:;">去登录</a></span><br>
+                    <button class="btn btn-default">注册</button><br>
+                    <div style="width: 100%;text-align: center">
+                        <span class="message" style="color: red;"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="panel panel-info">
+            <div class="panel-body">
+                社区
+            </div>
+            <div class="panel-footer">
+               <p>16:42</p>
+               <p>2019-11-26</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+</body>
+</html>

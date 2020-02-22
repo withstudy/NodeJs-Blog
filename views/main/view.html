@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+<div class="listBox" >
+    <h3 style="text-align: center" class="title">{{ content.title }}</h3>
+    <p style="text-align: center;font-size: 0.5em" class="info">
+        作者：<span>{{ content.u_name }}</span>
+        时间：<span>{{ content.addTime | date("Y-m-d H:i:s",-8*60) }}</span>
+        阅读量：<span>{{ content.views }}</span>
+        评论：<span class="messageCount">0</span>
+    </p>
+   <dfn>
+        {{ content.content }}
+   </dfn>
+</div><br>
+<div class="listBox message">
+    <strong style="font-size: 1em">评论</strong>
+    <span style="float: right">一共有 <dfn class="messageCount">0</dfn> 条评论</span>
+    {% if userInfo._id %}
+    <p style="line-height: 20px;text-align: center">{{ userInfo.username}}</p>
+    <input type="hidden" id="contentid" value="{{ content.id }}">
+        <textarea id="messageContent" style="width: 100%;border:1px solid #bce8f1;border-radius: 3px; padding: 5px"
+                  rows="3" placeholder="请输入评论内容" name="content"></textarea>
+        <button type="button" class="btn btn-info" id="messageBtn" >提交</button>
+    {% else %}
+    <p style="line-height: 50px;width: 100%;text-align: center;background: lightcoral
+        ;border-radius: 5px;color: white;margin-top: 20px;">只有登录的用户才能评论，快去登录吧~</p>
+    {% endif %}
+
+
+        <div id="messageList" style="margin-top: 2em">
+
+        </div>
+
+
+    <nav aria-label="..." >
+        <ul class="pager">
+            <li class="previous">
+
+            </li>
+            <li></li>
+            <li class="next">
+
+
+            </li>
+        </ul>
+    </nav>
+
+
+</div>
+
+
+
+<script src="/public/js/view.js"></script>
+{% endblock %}

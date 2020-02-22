@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block content %}
+
+{% for content in contents%}
+<div class="listBox" >
+    <h3 style="text-align: center" class="title">{{ content.title }}</h3>
+    <p style="text-align: center" class="info">
+        作者：<span>{{ content.u_name }}</span>
+        时间：<span>{{ content.addTime | date("Y-m-d H:i:s",-8*60) }}</span>
+        阅读量：<span>{{ content.views }}</span>
+        评论：<span>{{ content.comments }}</span>
+    </p>
+    <p class="description">{{ content.description }}</p>
+    <div class="function"><a class="btn btn-info" href="/view?contentid={{ content.id }}" role="button">阅读全文</a></div>
+</div><br>
+{%endfor%}
+{% include "page.html" %}
+
+
+{% endblock %}
